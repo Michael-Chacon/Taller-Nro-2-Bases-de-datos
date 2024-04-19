@@ -643,12 +643,12 @@
     ```
     SELECT codigo, nit, nombre, apellido1, apellido2, codigo_departamento
     FROM empleado
-    WHERE apellido2 = 'López' OR apellido2 = 'Moreno';
+    WHERE apellido2 = 'Díaz' OR apellido2 = 'Moreno';
     +--------+-----------+--------+-----------+-----------+---------------------+
     | codigo | nit       | nombre | apellido1 | apellido2 | codigo_departamento |
     +--------+-----------+--------+-----------+-----------+---------------------+
+    |      2 | Y5575632D | Adela  | Salas     | Díaz      |                   2 |
     |      6 | 38382980M | María  | Santana   | Moreno    |                   1 |
-    |      9 | 56399183D | Juan   | Gómez     | López     |                   2 |
     +--------+-----------+--------+-----------+-----------+---------------------+
     ```
     
@@ -660,12 +660,12 @@
     ```sql
     SELECT codigo, nit, nombre, apellido1, apellido2, codigo_departamento
     FROM empleado
-    WHERE apellido2 IN ('López', 'Moreno');
+    WHERE apellido2 IN ('Díaz', 'Moreno');
     +--------+-----------+--------+-----------+-----------+---------------------+
     | codigo | nit       | nombre | apellido1 | apellido2 | codigo_departamento |
     +--------+-----------+--------+-----------+-----------+---------------------+
+    |      2 | Y5575632D | Adela  | Salas     | Díaz      |                   2 |
     |      6 | 38382980M | María  | Santana   | Moreno    |                   1 |
-    |      9 | 56399183D | Juan   | Gómez     | López     |                   2 |
     +--------+-----------+--------+-----------+-----------+---------------------+
     ```
     
@@ -1228,7 +1228,7 @@ Con operadores básicos de comparación
   de Sistemas. (Sin utilizar INNER JOIN).
 
   ```sql
-  SELECT * 
+  SELECT e.codigo, e.nit, e.nombre, e.apellido1, e.apellido2, e.codigo_departamento AS 'codigo_departamento', d.codigo, d.nombre AS 'nombre', d.presupuesto, d.gasto
   FROM empleado AS e, departamento AS d
   WHERE d.nombre = (
       SELECT nombre
